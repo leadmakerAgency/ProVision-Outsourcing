@@ -1,0 +1,4 @@
+# Netlify: serve the success and booking pages at trailing-slash URLs
+/book/            /book.html            200
+/booked/          /booked.html          200
+/rfp-received/    /rfp-received.html    200

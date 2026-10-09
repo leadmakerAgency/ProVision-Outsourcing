@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /booked
+Disallow: /rfp-received
+
+Sitemap: https://provizionoutsourcing.com/sitemap.xml
