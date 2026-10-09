@@ -49,4 +49,39 @@
   /* remember name and email from any form so the booking calendar can be pre-filled */
   window.pvSaveLead=function(name,email){try{if(name||email)localStorage.setItem('pv_lead',JSON.stringify({name:name||'',email:email||''}));}catch(err){}};
   window.pvGetLead=function(){try{return JSON.parse(localStorage.getItem('pv_lead')||'{}');}catch(err){return {};}};
+
+  /* cookie consent: banner on first visit, preference stored locally */
+  var COOKIE_KEY='pv_cookie_consent';
+  var src=(document.currentScript&&document.currentScript.getAttribute('src'))||'';
+  var pvRoot=src.indexOf('../')===0?'../':'';
+  function getConsent(){try{var r=localStorage.getItem(COOKIE_KEY);return r?JSON.parse(r):null;}catch(err){return null;}}
+  function setConsent(analytics){
+    try{localStorage.setItem(COOKIE_KEY,JSON.stringify({v:1,necessary:true,analytics:!!analytics,ts:Date.now()}));}catch(err){}
+    hideBanner();
+  }
+  function hideBanner(){
+    var el=document.getElementById('pv-cookie');
+    if(el)el.remove();
+    document.body.classList.remove('pv-cookie-on');
+  }
+  function showBanner(){
+    if(document.getElementById('pv-cookie'))return;
+    document.body.classList.add('pv-cookie-on');
+    var bar=document.createElement('div');
+    bar.id='pv-cookie';
+    bar.className='pv-cookie';
+    bar.setAttribute('role','dialog');
+    bar.setAttribute('aria-label','Cookie preferences');
+    bar.innerHTML='<div class="pv-cookie-inner"><p>We use necessary cookies to run this site and remember your booking details. Optional analytics stay off unless you accept them. Third parties such as Calendly may set cookies when you book a call. Read the <a href="'+pvRoot+'cookies.html">cookie policy</a>.</p><div class="pv-cookie-acts"><button type="button" class="btn btn-o btn-sm" data-pv-cookie="necessary">Necessary only</button><button type="button" class="btn btn-p btn-sm" data-pv-cookie="all">Accept all</button></div></div>';
+    document.body.appendChild(bar);
+    bar.addEventListener('click',function(e){
+      var btn=e.target.closest('[data-pv-cookie]');
+      if(!btn)return;
+      setConsent(btn.getAttribute('data-pv-cookie')==='all');
+    });
+  }
+  window.pvOpenCookies=function(){try{localStorage.removeItem(COOKIE_KEY);}catch(err){}showBanner();var b=document.querySelector('#pv-cookie [data-pv-cookie="all"]');if(b)b.focus();};
+  var prefs=document.getElementById('pv-cookie-prefs');
+  if(prefs)prefs.addEventListener('click',function(){window.pvOpenCookies();});
+  if(!getConsent())showBanner();
 })();

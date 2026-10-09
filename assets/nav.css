@@ -47,3 +47,24 @@
 .art .body a.btn-o:hover{border-color:#8e2dff;color:#5e2e96}
 .fbot .pwr a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .fbot .pwr a:hover{color:#c9a6ff}
+.art .body button.btn{cursor:pointer;font-family:inherit;border:1px solid transparent}
+.art .body button.btn-p{color:#fff}
+/* cookie banner */
+.pv-cookie{position:fixed;left:0;right:0;bottom:0;z-index:500;background:#0f0318;color:#e9e6f2;border-top:1px solid rgba(255,255,255,.12);padding:20px 24px 22px;box-shadow:0 -16px 48px rgba(0,0,0,.4)}
+.pv-cookie .pv-cookie-inner{max-width:1200px;margin:0 auto;display:flex;gap:28px;align-items:center;justify-content:space-between}
+.pv-cookie p{font-size:14.5px;line-height:1.55;color:#d8d5e2;max-width:740px;margin:0}
+.pv-cookie p a{color:#c9a6ff;font-weight:600;text-decoration:none}
+.pv-cookie p a:hover,.pv-cookie p a:focus{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.pv-cookie .pv-cookie-acts{display:flex;gap:10px;flex-shrink:0}
+.pv-cookie .btn{cursor:pointer;font-family:inherit}
+.pv-cookie .btn-o{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.pv-cookie .btn-o:hover,.pv-cookie .btn-o:focus{background:rgba(255,255,255,.08);color:#fff}
+.pv-cookie .btn-p{color:#fff;border-color:transparent}
+body.pv-cookie-on{padding-bottom:132px}
+@media(max-width:800px){
+  .pv-cookie{padding:18px 16px 20px}
+  .pv-cookie .pv-cookie-inner{flex-direction:column;align-items:stretch;gap:16px}
+  .pv-cookie .pv-cookie-acts{flex-direction:column}
+  .pv-cookie .pv-cookie-acts .btn{justify-content:center}
+  body.pv-cookie-on{padding-bottom:220px}
+}
