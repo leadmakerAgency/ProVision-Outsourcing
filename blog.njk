@@ -1,0 +1,18 @@
+<section class="phero"><div class="glow"></div><div class="wrap"><div class="crumb"><a href="/index.html">Home</a> / Outsourcing Insights</div><h1>Outsourcing Insights</h1><p>Guides, comparisons and honest answers on building teams in the Philippines.</p></div></section>
+<section class="art"><div class="wrap" style="grid-template-columns:1fr"><div class="body" style="max-width:none">
+<div class="list">
+{% for post in pagedPosts %}{% if post %}
+<a class="post" href="{{ post.url }}">
+<span class="pthumb">{% if post.data.featured_image %}<img src="{{ post.data.featured_image }}" alt="" loading="{{ 'eager' if loop.index <= 2 else 'lazy' }}" onerror="this.remove()">{% endif %}</span>
+<span class="pbody"><time datetime="{{ post.date | isoDate }}">{{ post.data.dateLabel or (post.date | postDate) }}</time><h3>{{ post.data.title }}</h3>{% if post.data.excerpt %}<p>{{ post.data.excerpt }}</p>{% endif %}<small>Read article →</small></span>
+</a>
+{% endif %}{% endfor %}
+</div>
+{% if pagination.pages.length > 1 %}
+<nav class="bpager" aria-label="Blog pages">
+{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">← Newer</a>{% else %}<span aria-disabled="true">← Newer</span>{% endif %}
+{% for entry in pagination.hrefs %}<a href="{{ entry }}"{% if loop.index0 == pagination.pageNumber %} aria-current="page"{% endif %}>{{ loop.index }}</a>{% endfor %}
+{% if pagination.href.next %}<a href="{{ pagination.href.next }}">Older →</a>{% else %}<span aria-disabled="true">Older →</span>{% endif %}
+</nav>
+{% endif %}
+</div></div></section>

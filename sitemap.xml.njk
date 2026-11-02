@@ -1,3 +1,7 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://provizionoutsourcing.com/</loc><changefreq>monthly</changefreq></url>
@@ -69,4 +73,11 @@
 <url><loc>https://provizionoutsourcing.com/sales-support-jobs-philippines</loc><changefreq>weekly</changefreq></url>
 <url><loc>https://provizionoutsourcing.com/sales-development-representative-jobs-philippines</loc><changefreq>weekly</changefreq></url>
 <url><loc>https://provizionoutsourcing.com/virtual-assistant-jobs-philippines</loc><changefreq>weekly</changefreq></url>
+{%- set numBlogPages = collections.blogList | length | blogPageCount(site.blogPageSize) %}
+{%- for n in numBlogPages | rangeFromOne %}{% if n > 1 %}
+<url><loc>{{ site.url }}/blog/page/{{ n }}</loc><changefreq>weekly</changefreq></url>
+{%- endif %}{% endfor %}
+{%- for post in collections.posts %}
+<url><loc>{{ site.url }}{{ post.url | cleanUrl }}</loc><lastmod>{{ post.date | isoDate }}</lastmod><changefreq>monthly</changefreq></url>
+{%- endfor %}
 </urlset>

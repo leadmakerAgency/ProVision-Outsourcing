@@ -1,0 +1,31 @@
+/* Blog list and workflow articles. The article layout itself comes from the page styles shared with blog/*.html. */
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:8px}
+.post{border:1px solid #e6e2f0;border-radius:16px;text-decoration:none;color:#180522;display:flex;flex-direction:column;overflow:hidden;background:#fff;transition:border-color .2s,box-shadow .2s,transform .2s}
+.post:hover{border-color:#8e2dff;box-shadow:0 20px 50px rgba(94,46,150,.12);transform:translateY(-3px)}
+.post .pthumb{display:block;aspect-ratio:16/9;background:linear-gradient(135deg,#2a1747,#160a26)}
+.post .pthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.post .pbody{display:flex;flex-direction:column;flex:1;padding:22px 24px 24px}
+.post time{font-size:13px;color:#6e7191;font-weight:600;margin-bottom:8px}
+.post h3{font-family:Urbanist,sans-serif;font-weight:800;font-size:20px;margin-bottom:8px;line-height:1.25}
+.post p{font-size:15px;color:#4a4560;line-height:1.55;margin:0;flex:1}
+.post small{display:block;margin-top:14px;color:#5e2e96;font-weight:600;font-size:13px}
+.art .list a.post{color:#180522;font-weight:400}
+.bpager{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:40px}
+.bpager a,.bpager span{min-width:44px;height:44px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid #e6e2f0;background:#fff;font-weight:600;font-size:15px;color:#5e2e96;text-decoration:none}
+.bpager a:hover{border-color:#8e2dff}
+.bpager a[aria-current]{background:linear-gradient(135deg,#8e2dff,#5e2e96);border-color:transparent;color:#fff}
+.bpager span{opacity:.45}
+.blogmeta time{color:inherit}
+.heroimg img{opacity:1}
+.art h3{font-family:Urbanist,sans-serif;font-weight:800;font-size:23px;letter-spacing:-.3px;margin:32px 0 10px;line-height:1.25;color:#180522}
+.art h4{font-family:Urbanist,sans-serif;font-weight:800;font-size:19px;margin:24px 0 8px;color:#180522}
+.art .body strong{color:#180522}
+.art .body img{max-width:100%;height:auto;border-radius:14px;margin:12px 0}
+.art .body blockquote{border-left:4px solid #8e2dff;background:#f7f5fb;padding:16px 20px;border-radius:0 14px 14px 0;margin:0 0 18px}
+.art .body blockquote p:last-child{margin-bottom:0}
+.art .body hr{border:0;border-top:1px solid #e6e2f0;margin:32px 0}
+.art .body table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:15.5px;display:block;overflow-x:auto}
+.art .body th,.art .body td{border:1px solid #e6e2f0;padding:10px 12px;text-align:left;vertical-align:top;color:#3a3450}
+.art .body th{background:#f7f5fb;color:#180522}
+.art .body>*:first-child{margin-top:0}
+@media(max-width:900px){.list{grid-template-columns:1fr}}

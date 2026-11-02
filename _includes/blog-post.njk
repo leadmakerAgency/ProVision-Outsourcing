@@ -1,0 +1,31 @@
+---
+layout: base.njk
+---
+<section class="phero"><div class="glow"></div><div class="wrap">
+  <div class="crumb"><a href="/index.html">Home</a> / <a href="/blog.html">Blog</a> / {{ title }}</div>
+  <div class="grid">
+    <div>
+      <h1>{{ title }}</h1>
+      <div class="blogmeta">ProVizion Outsourcing · <time datetime="{{ date | isoDate }}">{{ date | postDate }}</time></div>
+      <div class="ctas"><a class="btn btn-p" href="/book.html">Book a call →</a><a class="btn btn-o" href="/rfp.html">Request a proposal</a></div>
+    </div>
+    {% if featured_image %}<div class="heroimg"><img src="{{ featured_image }}" alt="{{ title }}" onload="this.classList.add('ok')" onerror="this.parentNode.remove()"></div>{% endif %}
+  </div>
+  {% include "logos.njk" %}
+</div></section>
+
+<section class="art"><div class="wrap">
+<div class="body">
+{{ content | safe }}
+</div>
+<aside class="side">
+  <div class="sbox">
+    <h4>Want to talk it through?</h4>
+    <p>Book a short call and we'll talk through the roles, hours and volumes. Or request a proposal and we'll come back with a recommended team structure in writing.</p>
+    <a class="btn btn-p" href="/book.html">Book a call →</a>
+    <a class="btn btn-o" href="/rfp.html">Request a proposal</a>
+  </div>
+  {% set related = collections.blogList | relatedPosts(page.url, 4) %}
+  {% if related.length %}<div class="slinks"><h5>More articles</h5>{% for post in related %}<a href="{{ post.url }}">{{ post.data.title }}</a>{% endfor %}</div>{% endif %}
+</aside>
+</div></section>

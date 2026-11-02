@@ -1,0 +1,25 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ProVizion Outsourcing Blog</title>
+  <subtitle>Guides, comparisons and honest answers on outsourcing to the Philippines.</subtitle>
+  <link href="{{ site.url }}/feed.xml" rel="self"/>
+  <link href="{{ site.url }}/blog"/>
+  <id>{{ site.url }}/blog</id>
+  <updated>{% if collections.blogList.length %}{{ collections.blogList[0].date | atomDate }}{% else %}{{ site.buildDate }}T00:00:00.000Z{% endif %}</updated>
+  <author>
+    <name>ProVizion Outsourcing</name>
+  </author>
+{%- for post in collections.blogList %}
+  <entry>
+    <title>{{ post.data.title | escape }}</title>
+    <link href="{{ site.url }}{{ post.url | cleanUrl }}" rel="alternate" type="text/html"/>
+    <id>{{ site.url }}{{ post.url | cleanUrl }}</id>
+    <updated>{{ post.date | atomDate }}</updated>
+    <summary type="text">{{ (post.data.excerpt | default(post.data.title)) | escape }}</summary>
+  </entry>
+{%- endfor %}
+</feed>
